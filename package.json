@@ -1,0 +1,38 @@
+{
+  "name": "jordandwhalen",
+  "version": "0.1.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JordanDWhalen/jordandwhalen-jam.git"
+  },
+  "scripts": {
+    "build": "gulp default",
+    "dev": "gulp default",
+    "prod": "gulp prod"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-concat": "*",
+    "gulp-connect": "^4.1.0",
+    "gulp-css-globbing": "*",
+    "gulp-flatten": "*",
+    "gulp-imagemin": "*",
+    "gulp-jshint": "^2.1.0",
+    "gulp-livereload": "*",
+    "gulp-newer": "*",
+    "gulp-sass": "*",
+    "gulp-server-livereload": "^1.8.1",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1"
+  },
+  "dependencies": {
+    "gulp-open": "^3.0.1"
+  }
+}
