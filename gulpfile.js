@@ -9,7 +9,7 @@ let gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     open = require('gulp-open'),
-    browserSync = require('browser-sync')
+    browserSync = require('browser-sync'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
     child = require('child_process'),
@@ -17,23 +17,24 @@ let gulp = require('gulp'),
     devTasks = ['styles', 'vendor-js', 'js', 'images', 'resources', 'browser-sync', 'watch'],
     prodTasks = ['prod-styles', 'prod-vendor-js', 'prod-js', 'prod-images', 'prod-resources'];
 
-var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
-var messages = {
-    jekyllBuild: '<span style="color: blue">Running:</span> $ jekyll build'
-};
+    var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
+    var messages = {
+        jekyllBuild: '<span style="color: blue">Running:</span> $ jekyll build'
+    };
 
 // Dev tasks
-
 gulp.task('styles', function() {
-    return gulp.src('_styles/application.scss')
-      .pipe(flatten())
-      .pipe(sourcemaps.init())
-      .pipe(globbing({extensions: '.scss'}))
-      .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-      .pipe(autoprefixer({cascade: false}))
-      .pipe(sourcemaps.write())
-      .on('error', handleError)
-      .pipe(gulp.dest('assets/styles'))
+  return gulp.src('_styles/application.scss')
+    .pipe(flatten())
+    .pipe(sourcemaps.init())
+    .pipe(globbing({extensions: '.scss'}))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(autoprefixer({cascade: false}))
+    .pipe(sourcemaps.write())
+    .on('error', handleError)
+    .pipe(gulp.dest('assets/styles'))
+    .pipe(gulp.dest('_site/assets/styles'))
+    .pipe(browserSync.stream())
 });
 
 gulp.task('vendor-js', () => {
@@ -44,6 +45,7 @@ gulp.task('vendor-js', () => {
   .pipe(uglify())
   .on('error', handleError)
   .pipe(gulp.dest('assets/js'))
+  .pipe(gulp.dest('_site/assets/js'))
 });
 
 gulp.task('js', () => {
@@ -57,6 +59,8 @@ gulp.task('js', () => {
   .pipe(concat('application.js'))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest('assets/js'))
+  .pipe(gulp.dest('_site/assets/js'))
+  .pipe(browserSync.stream())
 });
 
 gulp.task('images', () => {
@@ -71,6 +75,7 @@ gulp.task('images', () => {
     }))
     .on('error', handleError)
     .pipe(gulp.dest('assets/images'))
+    .pipe(gulp.dest('_site/assets/images'))
 });
 
 gulp.task('resources', () => {
@@ -79,6 +84,7 @@ gulp.task('resources', () => {
     .pipe(newer('assets/resources'))
     .on('error', handleError)
     .pipe(gulp.dest('assets/resources'))
+    .pipe(gulp.dest('_site/assets/resources'))
 });
 
 gulp.task('jekyll-build', function (done) {
@@ -94,33 +100,39 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
 });
 
 gulp.task('browser-sync', ['styles', 'vendor-js', 'js', 'images', 'resources', 'jekyll-build'], function() {
+
     browserSync({
         server: {
             baseDir: '_site'
         }
     });
+
 });
 
-gulp.task('watch', function() {
-    gulp.watch(['_styles/**/*.scss'], ['styles']);
-    gulp.watch(['_js/scripts/**/*.js'], ['js']);
-    gulp.watch(['_js/vendor/**/*.js'], ['vendor-js']);
-    gulp.watch(['_raw-assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['images']);
-    gulp.watch(['_raw-assets/resources/**/*', '!src/assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['resources']);
-    gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+gulp.task('watch', function(){
+
+  gulp.watch(['_styles/**/*.scss'], ['styles']);
+  gulp.watch(['_js/scripts/**/*.js'], ['js']);
+  gulp.watch(['_js/vendor/**/*.js'], ['vendor-js']);
+  gulp.watch(['_raw-assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['images']);
+  gulp.watch(['_raw-assets/resources/**/*', '!src/assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['resources']);
+  gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+
+  gulp.watch(['_site/**/*', '_site/assets/**/*', '_site/assets/images/.{jpg,jpeg,png,gif,ico,svg}', '_site/assets/styles/*.css']).on('change', browserSync.reload);
+
 });
 
 
 // Production Tasks
 
 gulp.task('prod-styles', () => {
-    return gulp.src('_styles/application.scss') // IMPORT ANY OTHER VENDOR LIBS FROM THAT SRC FILE
-      .pipe(flatten())
-      .pipe(globbing({extensions: '.scss'}))
-      .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-      .pipe(autoprefixer({cascade: false}))
-      .on('error', handleError)
-      .pipe(gulp.dest('assets/styles'))
+  return gulp.src('_styles/application.scss') // IMPORT ANY OTHER VENDOR LIBS FROM THAT SRC FILE
+    .pipe(flatten())
+    .pipe(globbing({extensions: '.scss'}))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(autoprefixer({cascade: false}))
+    .on('error', handleError)
+    .pipe(gulp.dest('assets/styles'))
 });
 
 gulp.task('prod-vendor-js', () => {
