@@ -24,7 +24,7 @@ let gulp = require('gulp'),
 
 // Dev tasks
 gulp.task('styles', function() {
-  return gulp.src('_styles/application.scss')
+  return gulp.src('_assets/styles/application.scss')
     .pipe(flatten())
     .pipe(sourcemaps.init())
     .pipe(globbing({extensions: '.scss'}))
@@ -39,7 +39,7 @@ gulp.task('styles', function() {
 
 gulp.task('vendor-js', () => {
   return gulp.src([
-    '_js/vendor/**/*.js',
+    '_assets/js/vendor/**/*.js',
   ])
   .pipe(concat('application-vendor.js'))
   .pipe(uglify())
@@ -50,7 +50,7 @@ gulp.task('vendor-js', () => {
 
 gulp.task('js', () => {
   return gulp.src([
-    '_js/scripts/**/*.js',
+    '_assets/js/scripts/**/*.js',
   ])
   .pipe(sourcemaps.init())
   .pipe(jshint())
@@ -64,7 +64,7 @@ gulp.task('js', () => {
 });
 
 gulp.task('images', () => {
-  return gulp.src('_raw-assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}')
+  return gulp.src('_assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}')
     .pipe(flatten())
     .pipe(newer('assets/images'))
     .pipe(imagemin({
@@ -79,7 +79,7 @@ gulp.task('images', () => {
 });
 
 gulp.task('resources', () => {
-  return gulp.src('_raw-assets/resources/**/*')
+  return gulp.src('_assets/resources/**/*')
     .pipe(flatten())
     .pipe(newer('assets/resources'))
     .on('error', handleError)
@@ -111,11 +111,11 @@ gulp.task('browser-sync', ['styles', 'vendor-js', 'js', 'images', 'resources', '
 
 gulp.task('watch', function(){
 
-  gulp.watch(['_styles/**/*.scss'], ['styles']);
-  gulp.watch(['_js/scripts/**/*.js'], ['js']);
-  gulp.watch(['_js/vendor/**/*.js'], ['vendor-js']);
-  gulp.watch(['_raw-assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['images']);
-  gulp.watch(['_raw-assets/resources/**/*', '!src/assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['resources']);
+  gulp.watch(['_assets/styles/**/*.scss'], ['styles']);
+  gulp.watch(['_assets/js/scripts/**/*.js'], ['js']);
+  gulp.watch(['_assets/js/vendor/**/*.js'], ['vendor-js']);
+  gulp.watch(['_assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['images']);
+  gulp.watch(['_assets/resources/**/*', '!src/assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['resources']);
   gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
 
   gulp.watch(['_site/**/*', '_site/assets/**/*', '_site/assets/images/.{jpg,jpeg,png,gif,ico,svg}', '_site/assets/styles/*.css']).on('change', browserSync.reload);
@@ -126,7 +126,7 @@ gulp.task('watch', function(){
 // Production Tasks
 
 gulp.task('prod-styles', () => {
-  return gulp.src('_styles/application.scss') // IMPORT ANY OTHER VENDOR LIBS FROM THAT SRC FILE
+  return gulp.src('_assets/styles/application.scss') // IMPORT ANY OTHER VENDOR LIBS FROM THAT SRC FILE
     .pipe(flatten())
     .pipe(globbing({extensions: '.scss'}))
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -137,7 +137,7 @@ gulp.task('prod-styles', () => {
 
 gulp.task('prod-vendor-js', () => {
   return gulp.src([
-    '_js/vendor/**/*.js',
+    '_assets/js/vendor/**/*.js',
   ])
   .pipe(concat('application-vendor.js'))
   .pipe(uglify())
@@ -147,7 +147,7 @@ gulp.task('prod-vendor-js', () => {
 
 gulp.task('prod-js', () => {
   return gulp.src([
-    '_js/scripts/**/*.js',
+    '_assets/js/scripts/**/*.js',
   ])
   .pipe(jshint())
   .pipe(jshint.reporter(stylish))
@@ -157,7 +157,7 @@ gulp.task('prod-js', () => {
 });
 
 gulp.task('prod-images', () => {
-  return gulp.src('_raw-assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}')
+  return gulp.src('_assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}')
     .pipe(flatten())
     .pipe(newer('assets/images'))
     .pipe(imagemin({
@@ -171,7 +171,7 @@ gulp.task('prod-images', () => {
 });
 
 gulp.task('prod-resources', () => {
-  return gulp.src('_raw-assets/resources/**/*')
+  return gulp.src('_assets/resources/**/*')
     .pipe(flatten())
     .pipe(newer('assets/resources'))
     .on('error', handleError)
