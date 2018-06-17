@@ -3,16 +3,16 @@ hide_body: false
 is_partial: false
 fields:
 - type: text
+  name: name
+  label: Name
+  description: Descriptive name for the project to be used on the backend.
+- type: text
   name: client
   label: Client
   description: Name of the client that the work was done for.
   config:
     required: false
   default: Client Name
-- type: text
-  name: project_title
-  label: Project Title
-  description: Name for the work that was done on the project.
 - type: image_gallery
   name: project_image
   label: Project Image
@@ -25,7 +25,6 @@ fields:
     wysiwyg: true
     schema:
       format: markdown
-- type: field_group
 - type: textarea
   name: project_details
   label: Project Details
