@@ -1,0 +1,11 @@
+---
+new_page_extension: md
+auto_deploy: false
+admin_path: 
+webhook_url: 
+collections: 
+upload_dir: ''
+public_path: https://res.cloudinary.com/jordandwhalen
+front_matter_path: ''
+use_front_matter_path: 
+file_template: ":filename:"
