@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
+    <title>{{ page.title }}</title>
     <link rel="stylesheet" href="assets/styles/application.css">
   </head>
   <body>
@@ -10,6 +10,7 @@
   </body>
 </html>
 <body>
+  {% include header.html %}
   {{ content }}
   <script type="text/javascript" src="assets/js/application-vendor.js"></script>
   <script type="text/javascript" src="assets/js/application.js"></script>

@@ -13,7 +13,7 @@ let gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
     child = require('child_process'),
-    util = require('gulp-util'),
+    babel = require('gulp-babel'),
     devTasks = ['styles', 'vendor-js', 'js', 'images', 'resources', 'browser-sync', 'watch'],
     prodTasks = ['prod-styles', 'prod-vendor-js', 'prod-js', 'prod-images', 'prod-resources'];
 
@@ -42,7 +42,7 @@ gulp.task('vendor-js', () => {
     '_assets/js/vendor/**/*.js',
   ])
   .pipe(concat('application-vendor.js'))
-  .pipe(uglify())
+  // .pipe(uglify())
   .on('error', handleError)
   .pipe(gulp.dest('assets/js'))
   .pipe(gulp.dest('_site/assets/js'))
@@ -53,8 +53,9 @@ gulp.task('js', () => {
     '_assets/js/scripts/**/*.js',
   ])
   .pipe(sourcemaps.init())
-  .pipe(jshint())
-  .pipe(jshint.reporter(stylish))
+  .pipe(babel({ presets: ['env'] }))
+  // .pipe(jshint())
+  // .pipe(jshint.reporter(stylish))
   .on('error', handleError)
   .pipe(concat('application.js'))
   .pipe(sourcemaps.write())
@@ -116,7 +117,7 @@ gulp.task('watch', function(){
   gulp.watch(['_assets/js/vendor/**/*.js'], ['vendor-js']);
   gulp.watch(['_assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['images']);
   gulp.watch(['_assets/resources/**/*', '!src/assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['resources']);
-  gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+  gulp.watch(['*.html', '_layouts/*.html', '_posts/*', '_work/*'], ['jekyll-rebuild']);
 
   gulp.watch(['_site/**/*', '_site/assets/**/*', '_site/assets/images/.{jpg,jpeg,png,gif,ico,svg}', '_site/assets/styles/*.css']).on('change', browserSync.reload);
 

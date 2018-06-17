@@ -1,5 +1,12 @@
 ---
-title: Home
 layout: default
+title: Home
 ---
-<h1>Hi</h1>
+
+{% for work in site.work %}
+  <a href="#">
+    <h2>{{work.title}}</h2>
+  </a>
+{% endfor %}
+
+<div class="dribbble"></div>

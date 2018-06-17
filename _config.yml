@@ -1,3 +1,7 @@
 ---
 theme: jordandwhalen
+collections:
+  work:
+    output: true
+    permalink: /:collection/:name
 ---
