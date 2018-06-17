@@ -1,12 +1,8 @@
 ---
-layout: default
+layout: home
 title: Home
 ---
 
-{% for work in site.work %}
-  <a href="#">
-    <h2>{{work.title}}</h2>
-  </a>
-{% endfor %}
+{% include work.html %}
 
-<div class="dribbble"></div>
+{% include dribbble.html %}

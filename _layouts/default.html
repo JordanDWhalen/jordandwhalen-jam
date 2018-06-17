@@ -5,13 +5,14 @@
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="assets/styles/application.css">
   </head>
-  <body>
+  {% include header.html %}
+  <body class="{{ page.class }}">
 
+    {{ content }}
+
+    {% include footer.html %}
+    
+    <script type="text/javascript" src="assets/js/application-vendor.js"></script>
+    <script type="text/javascript" src="assets/js/application.js"></script>
   </body>
 </html>
-<body>
-  {% include header.html %}
-  {{ content }}
-  <script type="text/javascript" src="assets/js/application-vendor.js"></script>
-  <script type="text/javascript" src="assets/js/application.js"></script>
-</body>

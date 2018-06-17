@@ -1,7 +1,9 @@
 ---
 theme: jordandwhalen
 collections:
-  work:
+  projects:
     output: true
     permalink: /:collection/:name
+
+cloudinary_url: https://res.cloudinary.com/jordandwhalen/
 ---
