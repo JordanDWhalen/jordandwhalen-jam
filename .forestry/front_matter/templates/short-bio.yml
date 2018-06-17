@@ -1,0 +1,14 @@
+---
+hide_body: false
+is_partial: true
+fields:
+- type: textarea
+  name: biography
+  label: Biography
+  description: A short description of the author.
+  config:
+    required: true
+- type: text
+  name: biography_title
+  label: Biography Title
+  description: A descriptive title for the biography.
