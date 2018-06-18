@@ -23,3 +23,7 @@ fields:
     required: true
 pages:
 - _posts/2018-06-18-example-post.md
+- _posts/2018-06-18-blog-post-1.md
+- _posts/2018-06-18-blog-post-2.md
+- _posts/2018-06-18-blog-post-3.md
+- _posts/2018-06-18-blog-post-4.md
