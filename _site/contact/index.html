@@ -35,6 +35,25 @@
 
     <h1>Contact!</h1>
 
+<form name="contact" netlify class="contact-form">
+  <div class="contact-form__item">
+    <label for="name" class="contact-form__item-label">Name </label>
+    <input type="text" class="contact-form__item-input" name="name" />
+  </div>
+  <div class="contact-form__item">
+    <label for="email" class="contact-form__item-label">Email Address</label>
+    <input type="email" class="contact-form__item-input" name="email" />
+  </div>
+  <div class="contact-form__item contact-form__item--textarea">
+    <label for="message" class="contact-form__item-label">Message</label>
+    <textarea type="text" class="contact-form__item-input contact-form__item-input--textarea" name="message"></textarea>
+  </div>
+  <div data-netlify-recaptcha></div>
+  <p>
+    <button class="button contact-form__button" type="submit">Submit</button>
+  </p>
+</form>
+
 
     <footer class="global-footer">
   <div class="container global-footer__container">
