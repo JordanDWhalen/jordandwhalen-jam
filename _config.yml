@@ -4,6 +4,7 @@ collections:
   projects:
     output: true
     permalink: /:collection/:name
-
-cloudinary_url: https://res.cloudinary.com/jordandwhalen/
+include: ["_pages"]
+permalink: /:title/
+cloudinary_url: "https://res.cloudinary.com/jordandwhalen/"
 ---

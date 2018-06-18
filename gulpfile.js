@@ -14,6 +14,7 @@ let gulp = require('gulp'),
     stylish = require('jshint-stylish'),
     child = require('child_process'),
     babel = require('gulp-babel'),
+    cloudinary = require('gulp-cloudinary-upload'),
     devTasks = ['styles', 'vendor-js', 'js', 'images', 'resources', 'browser-sync', 'watch'],
     prodTasks = ['prod-styles', 'prod-vendor-js', 'prod-js', 'prod-images', 'prod-resources'];
 
@@ -68,6 +69,13 @@ gulp.task('images', () => {
   return gulp.src('_assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}')
     .pipe(flatten())
     .pipe(newer('assets/images'))
+    .pipe(cloudinary({
+      config: {
+        cloud_name: 'jordandwhalen',
+        api_key: '392174534756741',
+        api_secret: '_bRuRIBqe3uCZmyI51CN0MFQdks'
+      }
+    }))
     .pipe(imagemin({
         optimizationLevel: 5,
         progressive: true,
@@ -117,7 +125,7 @@ gulp.task('watch', function(){
   gulp.watch(['_assets/js/vendor/**/*.js'], ['vendor-js']);
   gulp.watch(['_assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['images']);
   gulp.watch(['_assets/resources/**/*', '!src/assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['resources']);
-  gulp.watch(['*.html', '_layouts/*.html', '_posts/*', '_work/*'], ['jekyll-rebuild']);
+  gulp.watch(['*.html', '_includes/*.html', '_pages/*.html', '_layouts/*.html', '_posts/*', '_work/*'], ['jekyll-rebuild']);
 
   gulp.watch(['_site/**/*', '_site/assets/**/*', '_site/assets/images/.{jpg,jpeg,png,gif,ico,svg}', '_site/assets/styles/*.css']).on('change', browserSync.reload);
 
