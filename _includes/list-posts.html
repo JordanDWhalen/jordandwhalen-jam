@@ -1,0 +1,18 @@
+<h2>My Posts</h2>
+
+<section class="posts">
+  <div class="container posts__container">
+    {% for post in site.posts %}
+      <article class="posts__item">
+        <header class="posts__item-header">
+          <h2 class="posts__item-title">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </h2>
+        </header>
+        <a href="{{ post.url }}">
+          {{ post.excerpt }}
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
