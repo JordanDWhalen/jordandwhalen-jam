@@ -7,7 +7,7 @@ $(function() {
       $('.dribbble').append(
         '<a class="dribbble__item" href="' + shot.html_url + '">' +
           '<img class="dribbble__item-image" src="' + cloudinary_fetch_url + shot.images.normal + '"/>' +
-        '<a/>');
+        '</a>');
 
     }, "");
 
