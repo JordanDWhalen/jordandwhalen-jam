@@ -1,0 +1,23 @@
+---
+hide_body: false
+is_partial: false
+fields:
+- type: text
+  name: title
+  label: Title
+  description: A title for the post
+  config:
+    required: true
+- type: text
+  name: subtitle
+  label: Subtitle
+  description: An optional subtitle for the post
+- type: textarea
+  name: content
+  label: Content
+  description: The content of the post
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+    required: true
