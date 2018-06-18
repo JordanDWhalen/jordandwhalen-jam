@@ -33,3 +33,5 @@ fields:
     wysiwyg: true
     schema:
       format: markdown
+pages:
+- _projects/case-study-1.md
