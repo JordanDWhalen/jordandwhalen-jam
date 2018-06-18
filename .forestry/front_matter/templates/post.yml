@@ -21,6 +21,12 @@ fields:
     schema:
       format: markdown
     required: true
+- type: text
+  hidden: true
+  label: Layout
+  name: layout
+  description: Default Post Layout
+  default: post
 pages:
 - _posts/2018-06-18-example-post.md
 - _posts/2018-06-18-blog-post-1.md
