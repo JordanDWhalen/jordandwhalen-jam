@@ -125,7 +125,7 @@ gulp.task('watch', function(){
   gulp.watch(['_assets/js/vendor/**/*.js'], ['vendor-js']);
   gulp.watch(['_assets/images/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['images']);
   gulp.watch(['_assets/resources/**/*', '!src/assets/resources/**/*.{jpg,jpeg,png,gif,ico,svg}'], ['resources']);
-  gulp.watch(['*.html', '_includes/*.html', '_pages/*.html', '_layouts/*.html', '_posts/*', '_work/*'], ['jekyll-rebuild']);
+  gulp.watch(['*.html', '_includes/*.html', '_pages/*.html', '_layouts/*.html', '_posts/*', '_projects/*'], ['jekyll-rebuild']);
 
   gulp.watch(['_site/**/*', '_site/assets/**/*', '_site/assets/images/.{jpg,jpeg,png,gif,ico,svg}', '_site/assets/styles/*.css']).on('change', browserSync.reload);
 

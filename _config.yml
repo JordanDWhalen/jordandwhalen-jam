@@ -3,7 +3,13 @@ theme: jordandwhalen
 collections:
   projects:
     output: true
-    permalink: /:collection/:name
+    permalink: /projects/:slug/
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: single-project
 include: ["_pages"]
 permalink: /:title/
 cloudinary_url: "https://res.cloudinary.com/jordandwhalen/"

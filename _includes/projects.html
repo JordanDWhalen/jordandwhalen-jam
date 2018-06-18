@@ -1,7 +1,7 @@
 <h2>My Projects</h2>
 
-{% for projects in site.projects %}
-  <a href="#">
-    <h2>{{projects.title}}</h2>
+{% for project in site.projects %}
+  <a href="{{ project.url }}">
+    <h2>{{project.title}}</h2>
   </a>
 {% endfor %}
