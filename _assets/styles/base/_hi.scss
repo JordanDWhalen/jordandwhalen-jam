@@ -8,8 +8,16 @@ body{
   box-sizing: border-box;
   background-color: #eee;
 
-  h1{
+  h1, p {
     font-family: sans-serif;
   }
+
+  p{
+    margin: 0;
+    & + p{
+      margin-top: 1rem;
+    }
+  }
+
 
 }
